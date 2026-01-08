@@ -124,7 +124,8 @@ const Generator = () => {
     formData.append("image", file);
 
     try {
-      const res = await fetch("https://vinathaal.azhizen.com/api/extract-syllabus", {
+      // const res = await fetch("https://vinathaal.azhizen.com/api/extract-syllabus", {
+      const res = await fetch("http://localhost:3001/api/extract-syllabus", {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${api_token}` 

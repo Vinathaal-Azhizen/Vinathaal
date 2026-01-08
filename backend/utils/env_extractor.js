@@ -3,7 +3,8 @@
 const { SSMClient, GetParameterCommand } = require("@aws-sdk/client-ssm");
 
 // 1. Create the SSM client ONCE, outside the function, to be reused.
-const ssmClient = new SSMClient({ region: "us-east-1" });
+// const ssmClient = new SSMClient({ region: "us-east-1" });
+const ssmClient = new SSMClient({ region: "ap-southeast-2" });
 
 /**
  * Fetches a parameter from AWS SSM Parameter Store.
@@ -16,7 +17,8 @@ async function getSecret(parameterName) {
     Name: parameterName,
     // Set to 'true' only if the parameter is a 'SecureString' type.
     // For 'String' type, this is correctly set to 'false'.
-    WithDecryption: false,
+    // WithDecryption: false,
+    WithDecryption: true,
   });
 
   try {

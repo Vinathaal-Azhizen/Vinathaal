@@ -60,6 +60,7 @@ module.exports = function(db, transporter, config) {
       const passwordHash = await bcrypt.hash(password, 10);
       const idtoken = generateIdToken('USER', 10);
       const api_token = generateIdToken('vina_', 16);
+      console.log("SignUp api_token:", api_token)
       await db.query('INSERT INTO users SET ?', {id_token: idtoken, name, email, password_hash: passwordHash, role: 'user', api_token: api_token });
 
       res.status(201).json({ message: 'User registered successfully.' });
@@ -93,7 +94,7 @@ module.exports = function(db, transporter, config) {
           name: user.name,
           email: user.email,
           role: user.role,
-          api_token: user.api_token_hash,
+          api_token: user.api_token,
         },
       });
     } catch (error) {

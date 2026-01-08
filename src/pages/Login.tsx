@@ -32,13 +32,16 @@ const Login = () => {
 
     
     try {
-      const res = await fetch("https://vinathaal.azhizen.com/api/auth/login", {
+      // const res = await fetch("https://vinathaal.azhizen.com/api/auth/login", {
+      const res = await fetch("http://localhost:3001/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
+
+      console.log("Login response:", data)
 
       if (res.ok) {
         toast.success("Login successful! Welcome back.");

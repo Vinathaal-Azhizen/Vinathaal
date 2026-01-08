@@ -74,6 +74,7 @@ async function startServer() {
     const perplexityService = createPerplexityService(config);
 
     //api's which doesn't require authorization
+    app.use('/api', generateRoute(perplexityService));
     app.use("/api", creditsHandling(db));
     app.use("/api", sendPDFEmail(config));
     app.use('/api/auth', authRoutes(db, transporter, config));
@@ -87,7 +88,6 @@ async function startServer() {
 
     app.use(protect);
     app.use('/api', extractRoute);
-    app.use('/api', generateRoute(perplexityService));
     app.use('/api', answerKeyRoute(perplexityService));
     app.use('/api', supportRoute(transporter, config));
     app.use('/api', slackAlertRoute(config));

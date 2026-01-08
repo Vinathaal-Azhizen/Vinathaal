@@ -38,7 +38,8 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch("https://vinathaal.azhizen.com/api/auth/signup", {
+      // const res = await fetch("https://vinathaal.azhizen.com/api/auth/signup", {
+      const res = await fetch("http://localhost:3001/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
