@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import Generator from './pages/Generator';
 import QuestionBankGenerator from './components/QuestionBankGenerator';
 import MCQGenerator from './pages/MCQGenerator';
+import MCQAnswerKey from './pages/MCQAnswerKey';
 import Result from './pages/Result';
 import AnswerKey from './pages/AnswerKey';
 import Pricing from './pages/Pricing';
