@@ -11,7 +11,8 @@ const DashboardStats = () => {
   });
 
   useEffect(() => {
-    fetch('https://vinathaal.azhizen.com/api/stats')
+    // fetch('https://vinathaal.azhizen.com/api/stats')
+    fetch('http://localhost:3001/api/stats')
       .then(res => res.json())
       .then(data => {
         const duration = 2000;

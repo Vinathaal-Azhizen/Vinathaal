@@ -113,6 +113,43 @@ const Generator = () => {
     }
   ]);
 
+  // const handleSyllabusUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (!file) return;
+
+  //   setSyllabusFile(file);
+  //   toast.success("Syllabus file selected!");
+
+  //   const formData = new FormData();
+  //   formData.append("image", file);
+
+  //   try {
+  //     // const res = await fetch("https://vinathaal.azhizen.com/api/extract-syllabus", {
+  //     const res = await fetch("http://localhost:3001/api/extract-syllabus", {
+  //       method: "POST",
+  //       headers: {
+  //         'Authorization': `Bearer ${api_token}` 
+  //       },
+  //       body: formData,
+  //     });
+
+  //     if (!res.ok) {
+  //       throw new Error("Syllabus extraction failed.");
+  //     }
+
+  //     const data = await res.json();
+  //     setSubjectName(data.subjectName || "");
+  //     setSyllabusText(data.syllabusText || "");
+  //     setIsSubjectLocked(true);
+  //     toast.success("Syllabus extracted successfully!");
+  //   } catch (err) {
+  //     console.error("Error uploading syllabus:", err);
+  //     toast.error("Failed to extract syllabus.");
+  //   }
+  // };
+
+
+
   const handleSyllabusUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -124,11 +161,12 @@ const Generator = () => {
     formData.append("image", file);
 
     try {
-      // const res = await fetch("https://vinathaal.azhizen.com/api/extract-syllabus", {
+      const encodedToken = btoa(api_token);
+
       const res = await fetch("http://localhost:3001/api/extract-syllabus", {
         method: "POST",
         headers: {
-          'Authorization': `Bearer ${api_token}` 
+          Authorization: `Bearer ${encodedToken}`,
         },
         body: formData,
       });
@@ -147,6 +185,7 @@ const Generator = () => {
       toast.error("Failed to extract syllabus.");
     }
   };
+
 
   const handleHeaderImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -403,7 +442,8 @@ const Generator = () => {
 
     try {
       // ✅ 1. Check credits immediately
-      const creditsRes = await fetch("https://vinathaal.azhizen.com/api/get-credits", {
+      // const creditsRes = await fetch("https://vinathaal.azhizen.com/api/get-credits", {
+      const creditsRes = await fetch("http://localhost:3001/api/get-credits", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -463,7 +503,8 @@ const Generator = () => {
       console.log("Sending corrected payload:", JSON.stringify(payload, null, 2));
 
       // ✅ 5. Call generate API
-      const res = await fetch("https://vinathaal.azhizen.com/api/generate-questions", {
+      // const res = await fetch("https://vinathaal.azhizen.com/api/generate-questions", {
+      const res = await fetch("http://localhost:3001/api/generate-questions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -498,7 +539,8 @@ const Generator = () => {
 
         // ✅ 6. Deduct credits only on success
         try {
-          const deductRes = await fetch("https://vinathaal.azhizen.com/api/deduct-credits", {
+          // const deductRes = await fetch("https://vinathaal.azhizen.com/api/deduct-credits", {
+          const deductRes = await fetch("http://localhost:3001/api/deduct-credits", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

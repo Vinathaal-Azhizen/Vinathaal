@@ -156,7 +156,8 @@ const Result = () => {
     formData.append("pdf", pdfBlob, "question_paper.pdf");
     formData.append("password", userPassword);
 
-    const res = await fetch("https://vinathaal.azhizen.com/api/encrypt-pdf", {
+    // const res = await fetch("https://vinathaal.azhizen.com/api/encrypt-pdf", {
+    const res = await fetch("http://localhost:3001/api/encrypt-pdf", {
       method: "POST",
       body: formData
     });
@@ -416,7 +417,8 @@ const handleWordGenerate = async () => {
         })) || []
       );
       // Simulate AI API call (replace with actual API)
-      const response = await fetch('https://vinathaal.azhizen.com/api/generate-answer-key', {
+      // const response = await fetch('https://vinathaal.azhizen.com/api/generate-answer-key', {
+      const response = await fetch('http://localhost:3001/api/generate-answer-key', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

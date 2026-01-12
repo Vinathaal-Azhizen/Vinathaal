@@ -40,7 +40,7 @@ export const S3Upload = async (config, token) => {
         };
 
         // const response = await axios.get(`https://vinathaal.azhizen.com/api/get-upload-url`, {
-        const response = await axios.get(`https://vinathaal.azhizen.com/api/get-upload-url`, {
+        const response = await axios.get(`http://localhost:3001/api/get-upload-url`, {
             params: payload,
             headers: {
                 'Authorization': `Bearer ${api_token}`
@@ -77,7 +77,8 @@ export const S3Upload = async (config, token) => {
         });
         
 
-        await axios.post("https://vinathaal.azhizen.com/api/store-upload-metadata", {
+        // await axios.post("https://vinathaal.azhizen.com/api/store-upload-metadata", {
+        await axios.post("http://localhost:3001/api/store-upload-metadata", {
         email,
         uploadURL: uploadUrl,
         objectURL: ObjectUrl,
