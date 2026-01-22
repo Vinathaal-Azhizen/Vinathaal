@@ -10,35 +10,35 @@ const DashboardStats = () => {
     satisfaction: 0,
   });
 
-  useEffect(() => {
-    // fetch('https://vinathaal.azhizen.com/api/stats')
-    fetch('http://localhost:3001/api/stats')
-      .then(res => res.json())
-      .then(data => {
-        const duration = 2000;
-        const steps = 60;
-        const interval = duration / steps;
-        let step = 0;
+  // useEffect(() => {
+  //   // fetch('https://vinathaal.azhizen.com/api/stats')
+  //   fetch('http://localhost:3001/api/stats')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       const duration = 2000;
+  //       const steps = 60;
+  //       const interval = duration / steps;
+  //       let step = 0;
 
-        const timer = setInterval(() => {
-          step++;
-          const progress = step / steps;
+  //       const timer = setInterval(() => {
+  //         step++;
+  //         const progress = step / steps;
 
-          setStats({
-            totalPapers: Math.floor(data.totalPapers * progress),
-            activeUsers: Math.floor(data.activeUsers * progress),
-            avgTime: Math.floor(data.avgTime * progress),
-            satisfaction: Math.floor(data.satisfaction * progress),
-          });
+  //         setStats({
+  //           totalPapers: Math.floor(data.totalPapers * progress),
+  //           activeUsers: Math.floor(data.activeUsers * progress),
+  //           avgTime: Math.floor(data.avgTime * progress),
+  //           satisfaction: Math.floor(data.satisfaction * progress),
+  //         });
 
-          if (step >= steps) {
-            clearInterval(timer);
-            setStats(data);
-          }
-        }, interval);
-      })
-      .catch(err => console.error('Failed to load stats', err));
-  }, []);
+  //         if (step >= steps) {
+  //           clearInterval(timer);
+  //           setStats(data);
+  //         }
+  //       }, interval);
+  //     })
+  //     .catch(err => console.error('Failed to load stats', err));
+  // }, []);
 
   const statCards = [
     {

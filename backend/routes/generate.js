@@ -115,7 +115,7 @@ ${unitContent}
         allQuestions.push({
           section: sectionId,
           unit: formatUnitLabel(defaultUnit),
-          text: `❌ Failed to generate questions for ${formatUnitLabel(defaultUnit)}`
+          text: `❌ Failed to generate questions 1 for ${formatUnitLabel(defaultUnit)}`
         });
       }
 
@@ -208,7 +208,7 @@ ${unitContent}
           allQuestions.push({
             section: sectionId,
             unit: formatUnitLabel(unit),
-            text: `❌ Failed to generate questions for ${formatUnitLabel(unit)}`
+            text: `❌ Failed to generate questions 2 for ${formatUnitLabel(unit)}`
           });
         }
       }

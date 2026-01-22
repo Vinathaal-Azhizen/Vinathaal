@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { ArrowLeft, Plus, Trash2, FileText, Image, Settings, Wand2, Brain, Scale, File, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { S3Upload } from "@/utils/S3Uploads";
+// import { S3Upload } from "@/utils/S3Uploads";
+import { S3Upload } from "../utils/S3Uploads"
 
 interface QuestionConfig {
   id: string;
@@ -88,6 +89,7 @@ const Generator = () => {
   const [uploading, setUploading] = useState(false);
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userEmail = user?.email;
+  const encodedToken = btoa(api_token);
 
   const [sections, setSections] = useState<Section[]>([
     {
@@ -161,7 +163,7 @@ const Generator = () => {
     formData.append("image", file);
 
     try {
-      const encodedToken = btoa(api_token);
+      
 
       const res = await fetch("http://localhost:3001/api/extract-syllabus", {
         method: "POST",
@@ -508,7 +510,7 @@ const Generator = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${api_token}`,
+          Authorization: `Bearer ${encodedToken}`,
         },
         body: JSON.stringify(payload),
       });
